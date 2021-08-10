@@ -210,9 +210,9 @@ services:
           $text: "build_pipeline_tekton.yml"
         env:
           APP_REPO: repo
-          APP_NAME: "{{form.pipeline.parameters.app-name}}"
-          API_KEY: "{{form.pipeline.parameters.api-key}}"
-          REGION: "{{form.pipeline.parameters.vsiRegion}}"
+          APP_NAME: "{{form.pipeline_blue_green.parameters.app-name}}"
+          API_KEY: "{{form.pipeline_blue_green.parameters.api-key}}"
+          REGION: "{{form.pipeline_blue_green.parameters.vpcRegion}}"
           ARTIFACTORY: artifactory
           COS_BUCKET_NAME: '{{form.customtool_cos-bucket.parameters.cos-bucket-name}}'
           COS_REGION: $env.env_id
@@ -257,7 +257,7 @@ services:
       type: tekton
       configuration:
         content:
-          $text: "deploy_pipeline_tekton.yml"
+          $text: deploy_pipeline_tekton_blueGreen.yml
         env:
           APP_REPO: repo
           APP_NAME: "{{form.pipeline.parameters.app-name}}"
@@ -265,11 +265,11 @@ services:
           ARTIFACTORY: artifactory
           INSIGHTS: devops-insights
           RESOURCE_GROUP: "{{form.pipeline.parameters.resource-group}}"
-          VIRTUAL_SERVER_INSTANCE: "{{form.pipeline.parameters.virtual-server-instance}}"
-          VIRTUAL_SERVER_REGION: "{{form.pipeline.parameters.vsiRegion}}"
+          VIRTUAL_SERVER_INSTANCE: "{{form.pipeline.parameters.virtual-server-instance}}" 
+          VIRTUAL_SERVER_REGION: "{{form.pipeline.parameters.vsiRegion}}" 
           HOST_SSH_KEYS: '{{form.pipeline.parameters.host-ssh-keys}}'
           HOST_USER_NAME: '{{form.pipeline.parameters.host-user-name}}'
-          HOST_USER_PASSWORD: '{{form.pipeline.parameters.host-user-password}}'
+          HOST_USER_PASSWORD: '{{form.pipeline.parameters.host-user-password}}'   
           COS_BUCKET_NAME: '{{form.customtool_cos-bucket.parameters.cos-bucket-name}}'
           COS_API_KEY: '{{form.customtool_cos-bucket.parameters.cos-api-key}}'
           TARGET: "prod"
@@ -301,7 +301,20 @@ services:
             $env.template.info.hosted_region !== "" ? 'main': 'master'
           APP_REPO_BRANCH: >
             $env.template.info.hosted_region !== "" ? 'master': 'master'
+          DEPLOYMENT_STRATEGY: '{{form.deployment_strategy.parameters.deployment_strategy}}'
+          BLUE_GREEN_APP_NAME: "{{form.pipeline_blue_green.parameters.app-name}}"
+          BLUE_GREEN_API_KEY: "{{form.pipeline_blue_green.parameters.api-key}}"  
+          BASTION_HOST: "{{form.pipeline_blue_green.parameters.virtual-server-instance}}"
+          BASTION_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.host-ssh-keys}}'
+          BASTION_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.host-user-name}}'
+          POOL_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.host-ssh-keys}}'
+          POOL_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.host-user-name}}'
+          VPC_REGION: "{{form.pipeline_blue_green.parameters.vpcRegion}}"
+          LOADBALANCER: "{{form.pipeline_blue_green.parameters.load-balancer-name}}"
+          GREEN_POOL: "{{form.pipeline_blue_green.parameters.green-pool-name}}"
+          BLUE_POOL: "{{form.pipeline_blue_green.parameters.blue-pool-name}}"             
         execute: false
+
   webide:
     service_id: orion 
   devops-insights:
@@ -329,6 +342,35 @@ form:
           '{{hostUserPassword}}' : '' 
     schema:
       $ref: deploy.json
+  pipeline_blue_green:
+    parameters:
+      app-name: >
+        $env.appName ?
+          '{{appName}}' : '{{services.repo.parameters.repo_name}}'
+      api-key: '{{apiKey}}'
+      resource-group: '{{resourceGroup}}'
+      vpcRegion: '{{vpcRegion}}'
+      virtual-server-instance: '{{virtualServerInstance}}'
+      host-ssh-keys: >
+        $env.hostSshKeys ?
+          '{{hostSshKeys}}' : ''
+      host-user-name: >
+        $env.hostUserName ?
+          '{{hostUserName}}' : '' 
+      host-user-password: >
+        $env.hostUserPassword ?
+          '{{hostUserPassword}}' : '' 
+      load-balancer-name: >
+        $env.loadBalancerName ?
+          '{{loadBalancerName}}' : '' 
+      green-pool-name: >
+        $env.greenPoolName ?
+          '{{greenPoolName}}' : ''   
+      blue-pool-name: >
+        $env.bluePoolName ?
+          '{{bluePoolName}}' : ''                   
+    schema:
+      $ref: deploy_blue_green.json
   customtool_cos-bucket:
     parameters:
       cos-bucket-name: >
@@ -350,6 +392,14 @@ form:
       hashicorp-vault: false
     schema:
       $ref: wizard_vault.json
+
+  deployment_strategy:
+    parameters:
+      deployment-strategy:  >
+        $env.deploymentStrategy ?
+          '{{deploymentStrategy}}' : 'interrupt' 
+    schema:
+      $ref: wizard_strategy.json
 
   wizard_summary:
     schema:
