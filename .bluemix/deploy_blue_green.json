@@ -51,29 +51,40 @@
        },
        "host-user-name":{
           "description":{
-             "$ref":"#/messages/deploy.vsiUserName"
+             "$ref":"#/messages/deploy.poolUsernameVirtualServer"
           },
           "title":{
-             "$ref":"#/messages/deploy.userName"
+             "$ref":"#/messages/deploy.poolUsernameVirtualServer"
           },
           "type":"string"
        },
        "host-ssh-keys":{
           "description":{
-             "$ref":"#/messages/deploy.vsiSshKey"
+             "$ref":"#/messages/deploy.poolSshVirtualServer"
           },
           "title":{
-             "$ref":"#/messages/deploy.hostSshKeys"
+             "$ref":"#/messages/deploy.poolSshVirtualServer"
           },
           "type":"password"
        },
-       "host-user-password":{
-          "description":{
-             "$ref":"#/messages/deploy.vsiUserPassword"
-          },
-          "title":"Password",
-          "type":"password"
-       },
+       "bastion-host-user-name":{
+         "description":{
+            "$ref":"#/messages/deploy.bastionUsernameVirtualServer"
+         },
+         "title":{
+            "$ref":"#/messages/deploy.bastionUsernameVirtualServer"
+         },
+         "type":"string"
+      },
+      "bastion-host-ssh-keys":{
+         "description":{
+            "$ref":"#/messages/deploy.bastionSshVirtualServer"
+         },
+         "title":{
+            "$ref":"#/messages/deploy.bastionSshVirtualServer"
+         },
+         "type":"password"
+      },
        "app-name":{
           "description":{
              "$ref":"#/messages/deploy.appDescription"
@@ -138,8 +149,7 @@
                  },
                 "title":{
                    "$ref":"#/messages/deploy.vpcRegionTitle"
-                },
-                "key":"vpcRegion"
+                }
              },
              {
                 "type":"label",
@@ -181,14 +191,68 @@
           ]
        },
        {
+         "type":"table",
+         "columnCount":3,
+         "widths":[
+            "37%",
+            "3%",
+            "60%"
+         ],
+         "items":[ 
+            {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.bastionUsernameVirtualServer"
+                },
+               "title":{
+                  "$ref": "#/messages/deploy.bastionUsernameVirtualServer"
+               }
+            },
+            {
+               "type":"label",
+               "title":""
+            },
+            {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.bastionSshVirtualServer"
+                },
+               "title":{
+                  "$ref":"#/messages/deploy.bastionSshVirtualServer"
+               }
+            },               
+      {
+         "type":"text",
+         "title": {
+            "$ref": "#/messages/deploy.bastionUsernameVirtualServer"
+         },
+         "key":"bastion-host-user-name"
+       }, 
+       {
+         "type":"label",
+         "title":""
+      },             
+       {
+         "type": "password",
+         "description": {
+            "$ref": "#/messages/deploy.bastionSshVirtualServer"
+        },
+        "title": {
+            "$ref": "#/messages/deploy.bastionSshVirtualServer"
+        },
+         "key":"bastion-host-ssh-keys"
+      }
+   ]
+},            
+       {
           "type":"table",
           "columnCount":5,
           "widths":[
-             "46%",
+             "37%",
+             "3%",
+             "29%",
              "2%",
-             "25%",
-             "2%",
-             "25%"
+             "29%"
           ],
           "items":[
              {
@@ -261,39 +325,58 @@
           ]
        },
        {
-        "type": "selectfieldset",
-        "key": "type",
-        "titleMap": {
-            "credentials": {
-                "$ref": "#/messages/deploy.userCredentials"
-            },
-            "ssh_private_key": {
-                "$ref": "#/messages/deploy.userSSH"
-            }
-        },
-        "items": [
+         "type":"table",
+         "columnCount":3,
+         "widths":[
+            "37%",
+            "3%",
+            "60%"
+         ],
+         "items":[ 
             {
-                "type": "section",
-                "description": {
-                    "$ref": "#/messages/deploy.userCredentialsDescription"
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
                 },
-                "items": [
-                    "host-user-name",
-                    "host-user-password"
-
-                ]
-            }, {
-                "type": "section",
-                "description": {
-                    "$ref": "#/messages/deploy.userSSHDescription"
+               "title":{
+                  "$ref": "#/messages/deploy.poolUsernameVirtualServer"
+               }
+            },
+            {
+               "type":"label",
+               "title":""
+            },
+            {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolSshVirtualServer"
                 },
-                "items": [
-                    "host-user-name",
-                    "host-ssh-keys"
-
-                ]
-            }
-        ]
-    }
+               "title":{
+                  "$ref":"#/messages/deploy.poolSshVirtualServer"
+               }
+            },               
+      {
+         "type":"text",
+         "title": {
+            "$ref": "#/messages/deploy.poolUsernameVirtualServer"
+         },
+         "key":"host-user-name"
+       }, 
+       {
+         "type":"label",
+         "title":""
+      },             
+       {
+         "type": "password",
+         "description": {
+            "$ref": "#/messages/deploy.poolSshVirtualServer"
+        },
+        "title": {
+            "$ref": "#/messages/deploy.poolSshVirtualServer"
+        },
+         "key":"host-ssh-keys"
+      }
+   ]
+}                 
     ]
  }

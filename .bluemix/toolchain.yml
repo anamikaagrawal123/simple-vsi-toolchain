@@ -301,12 +301,12 @@ services:
             $env.template.info.hosted_region !== "" ? 'main': 'master'
           APP_REPO_BRANCH: >
             $env.template.info.hosted_region !== "" ? 'master': 'master'
-          DEPLOYMENT_STRATEGY: '{{form.deployment_strategy.parameters.deployment_strategy}}'
+          DEPLOYMENT_STRATEGY: '{{form.deployment_strategy.parameters.deployment-strategy}}'
           BLUE_GREEN_APP_NAME: "{{form.pipeline_blue_green.parameters.app-name}}"
           BLUE_GREEN_API_KEY: "{{form.pipeline_blue_green.parameters.api-key}}"  
           BASTION_HOST: "{{form.pipeline_blue_green.parameters.virtual-server-instance}}"
-          BASTION_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.host-ssh-keys}}'
-          BASTION_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.host-user-name}}'
+          BASTION_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.bastion-host-ssh-keys}}'
+          BASTION_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.bastion-host-user-name}}'
           POOL_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.host-ssh-keys}}'
           POOL_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.host-user-name}}'
           VPC_REGION: "{{form.pipeline_blue_green.parameters.vpcRegion}}"
@@ -356,10 +356,13 @@ form:
           '{{hostSshKeys}}' : ''
       host-user-name: >
         $env.hostUserName ?
-          '{{hostUserName}}' : '' 
-      host-user-password: >
-        $env.hostUserPassword ?
-          '{{hostUserPassword}}' : '' 
+          '{{hostUserName}}' : ''
+      bastion-host-ssh-keys: >
+        $env.hostSshKeys ?
+          '{{hostSshKeys}}' : ''
+      bastion-host-user-name: >
+        $env.hostUserName ?
+          '{{hostUserName}}' : ''            
       load-balancer-name: >
         $env.loadBalancerName ?
           '{{loadBalancerName}}' : '' 
