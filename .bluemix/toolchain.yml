@@ -343,6 +343,7 @@ form:
           '{{hostUserPassword}}' : '' 
     schema:
       $ref: deploy.json
+
   pipeline_blue_green:
     parameters:
       app-name: >
@@ -375,6 +376,7 @@ form:
           '{{bluePoolName}}' : ''                   
     schema:
       $ref: deploy_blue_green.json
+
   customtool_cos-bucket:
     parameters:
       cos-bucket-name: >

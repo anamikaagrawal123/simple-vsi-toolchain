@@ -192,6 +192,7 @@ repo_conditions:
           configuration:
             env:
               GIT_COMMIT_EVENT_LISTENER_NAME: 'grit-or-gitlab-commit'
+
 deploy_conditions:
   - condition:
       any:
@@ -205,6 +206,7 @@ deploy_conditions:
           configuration:
             content:
               $text: deploy_pipeline_tekton_blueGreen.yml
+
 vault_conditions:
   - condition:
       any:

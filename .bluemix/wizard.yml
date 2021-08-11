@@ -17,6 +17,7 @@ steps:
     advanced_form: repo
     conditions:
       $ref: conditions.yml#/repo_conditions
+
   - name: inventory
     label: 
       $ref: "#/messages/wizard.step.inventory.label"
@@ -24,6 +25,7 @@ steps:
       $ref: "#/messages/wizard.step.inventory.title"
     form: wizard_inventory
     advanced_form: inventory-repo
+
   - name: vault
     title:
       $ref: "#/messages/wizard.step.vault.title"
@@ -31,6 +33,7 @@ steps:
     secretsStep: true
     conditions:
       $ref: conditions.yml#/vault_conditions
+
   - name: keyprotect
     indent_level: 1
     title:
@@ -42,6 +45,7 @@ steps:
           - form: wizard_vault
             parameter: key-protect
             value: true
+
   - name: hashicorpvault
     indent_level: 1
     title:
@@ -53,10 +57,14 @@ steps:
           - form: wizard_vault
             parameter: hashicorp-vault
             value: true
+
   - name: deployment_strategy
     form: deployment_strategy
     title:
       $ref: "#/messages/wizard.step.deployment_strategy.title"
+    condition:
+      ref: conditions.yml#/deploy_conditions
+
   - name: deploy
     indent_level: 1  
     label: 
@@ -78,8 +86,6 @@ steps:
     title:
       $ref: "#/messages/wizard.step.deploy.blueGreentitle"
     form: pipeline_blue_green
-    condition:
-      ref: conditions.yml#/deploy_conditions
     visible:
       condition:
         any:
