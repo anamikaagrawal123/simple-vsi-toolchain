@@ -63,7 +63,7 @@ steps:
     title:
       $ref: "#/messages/wizard.step.deployment_strategy.title"
     conditions:
-      ref: conditions.yml#/deploy_conditions
+      $ref: conditions.yml#/deploy_conditions
 
   - name: deploy
     indent_level: 1  
