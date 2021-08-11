@@ -62,7 +62,7 @@ steps:
     form: deployment_strategy
     title:
       $ref: "#/messages/wizard.step.deployment_strategy.title"
-    condition:
+    conditions:
       ref: conditions.yml#/deploy_conditions
 
   - name: deploy
