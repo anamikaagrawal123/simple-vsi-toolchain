@@ -253,11 +253,12 @@ services:
         - inventory-repo
         - devops-insights
       name: 'cd-pipeline'
+      deployment-strategy: 'interrupt'
       ui-pipeline: true
       type: tekton
       configuration:
         content:
-          $text: deploy_pipeline_tekton_blueGreen.yml
+          $text: deploy_pipeline_tekton.yml
         env:
           APP_REPO: repo
           APP_NAME: "{{form.pipeline.parameters.app-name}}"

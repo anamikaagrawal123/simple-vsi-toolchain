@@ -78,6 +78,8 @@ steps:
     title:
       $ref: "#/messages/wizard.step.deploy.blueGreentitle"
     form: pipeline_blue_green
+    condition:
+      ref: conditions.yml#/deploy_conditions
     visible:
       condition:
         any:
