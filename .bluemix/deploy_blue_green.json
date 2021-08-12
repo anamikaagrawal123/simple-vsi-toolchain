@@ -36,6 +36,18 @@
              ]
           }
        },
+       "loadbalancer":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"alb-instances",
+            "params":[
+               "api-key"
+            ]
+         }
+      },
        "type":{
           "description":{
              "$ref":"#/messages/deploy.vsiAuthType"
@@ -291,12 +303,12 @@
                 }
              },
              {
-                "type":"text",
-                "readonly":false,
+                "type":"select",
+                "readonly":true,
                 "title":{
                    "$ref":"#/messages/deploy.loadBalancerName"
                 },
-                "key":"load-balancer-name"
+                "key":"loadbalancer"
              },
              {
                 "type":"label",
