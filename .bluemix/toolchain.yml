@@ -311,9 +311,9 @@ services:
           POOL_HOST_SSH_KEYS: '{{form.pipeline_blue_green.parameters.host-ssh-keys}}'
           POOL_HOST_USER_NAME: '{{form.pipeline_blue_green.parameters.host-user-name}}'
           VPC_REGION: "{{form.pipeline_blue_green.parameters.vpcRegion}}"
-          LOADBALANCER: "{{form.pipeline_blue_green.parameters.load-balancer-name}}"
-          GREEN_POOL: "{{form.pipeline_blue_green.parameters.green-pool-name}}"
-          BLUE_POOL: "{{form.pipeline_blue_green.parameters.blue-pool-name}}"             
+          LOADBALANCER: "{{form.pipeline_blue_green.parameters.loadbalancer}}"
+          GREEN_POOL: "{{form.pipeline_blue_green.parameters.loadbalancerpoolsgreen}}"
+          BLUE_POOL: "{{form.pipeline_blue_green.parameters.loadbalancerpoolsblue}}"             
         execute: false
 
   webide:

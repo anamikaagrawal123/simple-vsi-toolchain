@@ -36,6 +36,42 @@
              ]
           }
        },
+       "loadbalancer":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"alb-instances",
+            "params":[
+               "api-key"
+            ]
+         }
+      },
+      "loadbalancerpoolsblue":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"alb-pools",
+            "params":[
+               "loadbalancer"
+            ]
+         }
+      }, 
+      "loadbalancerpoolsgreen":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"alb-pools",
+            "params":[
+               "loadbalancer"
+            ]
+         }
+      },
        "type":{
           "description":{
              "$ref":"#/messages/deploy.vsiAuthType"
@@ -291,36 +327,36 @@
                 }
              },
              {
-                "type":"text",
-                "readonly":false,
+                "type":"select",
+                "readonly":true,
                 "title":{
                    "$ref":"#/messages/deploy.loadBalancerName"
                 },
-                "key":"load-balancer-name"
+                "key":"loadbalancer"
              },
              {
                 "type":"label",
                 "title":""
              },
              {
-                "type":"text",
-                "readonly":false,
+                "type":"select",
+                "readonly":true,
                 "title":{
                    "$ref":"#/messages/deploy.bluePoolName"
                 },
-                "key":"blue-pool-name"
+                "key":"loadbalancerpoolsblue"
              },
              {
                 "type":"label",
                 "title":""
              },
              {
-                "type":"text",
-                "readonly":false,
+                "type":"select",
+                "readonly":true,
                 "title":{
                    "$ref":"#/messages/deploy.greenPoolName"
                 },
-                "key":"green-pool-name"
+                "key":"loadbalancerpoolsgreen"
              }
           ]
        },
