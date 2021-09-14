@@ -428,7 +428,7 @@
           "type":"select",
           "title":"Instance Groups,
           "key":"instancegroups"
-       }
+       },
    ]
 }                 
     ]
