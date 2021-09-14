@@ -425,6 +425,11 @@
          "key":"host-ssh-keys"
       },
        {
+               "type":"label",
+               "description":"test",
+               "title":"Instance Groups"
+        },
+       {
           "type":"select",
           "title":"Instance Groups",
           "key":"instancegroups"
