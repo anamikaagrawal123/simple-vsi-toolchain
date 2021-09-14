@@ -430,6 +430,10 @@
                "title":"Instance Groups"
         },
        {
+         "type":"label",
+         "title":""
+      },
+       {
           "type":"select",
           "title":"Instance Groups",
           "key":"instancegroups"
