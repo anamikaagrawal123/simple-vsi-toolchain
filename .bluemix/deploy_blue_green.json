@@ -48,6 +48,18 @@
             ]
          }
       },
+        "instancegroups":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"instance-groups",
+            "params":[
+               "api-key"
+            ]
+         }
+      },
       "loadbalancerpoolsblue":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -411,7 +423,12 @@
             "$ref": "#/messages/deploy.poolSshVirtualServer"
         },
          "key":"host-ssh-keys"
-      }
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups,
+          "key":"instancegroups"
+       }
    ]
 }                 
     ]
