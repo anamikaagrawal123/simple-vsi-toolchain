@@ -54,7 +54,7 @@
          },
          "type":"string",
          "validator":{
-            "v-type":"instance-groups",
+            "v-type":"vpc-instance-group",
             "params":[
                "api-key"
             ]
