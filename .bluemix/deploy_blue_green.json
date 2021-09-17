@@ -44,7 +44,7 @@
          "validator":{
             "v-type":"alb-instances",
             "params":[
-                "loadbalancerregion"
+                "vpcRegion"
             ]
          }
       },
@@ -69,7 +69,7 @@
             "v-type":"vpc-instance-group",
             "params":[
                "api-key",
-                "instancegroupsRegion"
+                "vpcRegion"
             ]
          }
       },
@@ -463,6 +463,16 @@
             "$ref": "#/messages/deploy.poolSshVirtualServer"
         },
          "key":"host-ssh-keys"
+      }, {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"Instance Group"
+            }, 
+        {
+         "type":"label",
+         "title":""
       },
        {
           "type":"select",
