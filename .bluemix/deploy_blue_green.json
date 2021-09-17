@@ -60,6 +60,18 @@
             ]
          }
       },
+        "vpcName":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"vpc-name",
+            "params":[
+               "api-key"
+            ]
+         }
+      },
         "instancegroups":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -478,7 +490,24 @@
           "type":"select",
           "title":"Instance Groups",
           "key":"instancegroups"
+       },
+             {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"VPC Name"
+            }, 
+        {
+         "type":"label",
+         "title":""
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups",
+          "key":"vpcName"
        }
+   ]
    ]
 }                 
     ]
