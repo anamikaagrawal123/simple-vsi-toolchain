@@ -24,7 +24,7 @@
              "v-type":"api-key"
           }
        },
-       "vpcRegion":{
+       "vsiRegion":{
           "description":{
              "$ref":"#/messages/deploy.vpcRegionLabel"
           },
@@ -36,18 +36,6 @@
              ]
           }
        },
-       "loadbalancerregion":{
-         "description":{
-            "$ref":"#/messages/deploy.vpcRegionLabel"
-         },
-         "type":"string",
-         "validator":{
-            "v-type":"alb-region",
-            "params":[
-               "api-key"
-            ]
-         }
-      },
        "loadbalancer":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -60,13 +48,13 @@
             ]
          }
       },
-       "instancegroupsRegion":{
+       "vpcRegion":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
          },
          "type":"string",
          "validator":{
-            "v-type":"vpc-instance-group-region",
+            "v-type":"vpc-region",
             "params":[
                "api-key"
             ]
@@ -182,7 +170,7 @@
     "required":[
        "app-name",
        "api-key",
-       "vpcRegion",
+       "vsiRegion",
        "virtual-server-instance"
     ],
     "form":[
@@ -245,7 +233,7 @@
                 "placeholder":{
                    "$ref":"#/messages/deploy.regionPlaceHolder"
                 },
-                "key":"vpcRegion"
+                "key":"vsiRegion"
              },
              {
                 "type":"label",
@@ -333,7 +321,7 @@
                 "description":{
                     "$ref":"#/messages/deploy.loadBalancerName"
                  },
-                "title":"Load Balancer Region"
+                "title":"VPC Region"
              },
               {
                 "type":"label",
@@ -345,7 +333,7 @@
                 "title":{
                    "$ref":"#/messages/deploy.loadBalancerName"
                 },
-                "key":"loadbalancerregion"
+                "key":"vpcRegion"
              },
               {
                 "type":"label",
@@ -475,30 +463,6 @@
             "$ref": "#/messages/deploy.poolSshVirtualServer"
         },
          "key":"host-ssh-keys"
-      },
-       {
-               "type":"label",
-               "description":"test",
-               "title":"Instance Groups Region"
-        },
-       {
-         "type":"label",
-         "title":""
-      },
-       {
-          "type":"select",
-          "title":"Instance Groups Region",
-          "key":"instancegroupsRegion"
-       }
-       ,
-       {
-               "type":"label",
-               "description":"test",
-               "title":"Instance Groups"
-        },
-       {
-         "type":"label",
-         "title":""
       },
        {
           "type":"select",
