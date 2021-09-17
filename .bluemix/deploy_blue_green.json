@@ -36,6 +36,18 @@
              ]
           }
        },
+       "loadbalancerregion":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"alb-region",
+            "params":[
+               "api-key"
+            ]
+         }
+      },
        "loadbalancer":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -44,7 +56,7 @@
          "validator":{
             "v-type":"alb-instances",
             "params":[
-               "api-key"
+                "loadbalancerregion"
             ]
          }
       },
@@ -316,7 +328,26 @@
              "29%"
           ],
           "items":[
-             {
+              {
+                "type":"label",
+                "description":{
+                    "$ref":"#/messages/deploy.loadBalancerName"
+                 },
+                "title":"Load Balancer Region"
+             },
+              {
+                "type":"label",
+                "title":""
+             },
+              {
+                "type":"select",
+                "readonly":true,
+                "title":{
+                   "$ref":"#/messages/deploy.loadBalancerName"
+                },
+                "key":"loadbalancerregion"
+             },
+              {
                 "type":"label",
                 "description":{
                     "$ref":"#/messages/deploy.loadBalancerName"
