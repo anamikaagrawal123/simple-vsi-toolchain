@@ -172,7 +172,7 @@
           "validator":{
              "v-type":"vsi-instances",
              "params":[
-                "vpcRegion"
+                "vsiRegion"
              ]
           },
           "type":"string",
