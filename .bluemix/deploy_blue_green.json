@@ -329,15 +329,8 @@
              "29%"
           ],
           "items":[
+             
               
-              {
-                "type":"label",
-                "title":""
-             },
-              {
-                 "type":"label",
-                 "title":""
-                }, 
               {
                 "type":"label",
                 "description":{
