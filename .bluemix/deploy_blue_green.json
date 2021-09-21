@@ -24,18 +24,6 @@
              "v-type":"api-key"
           }
        },
-       "vsiRegion":{
-          "description":{
-             "$ref":"#/messages/deploy.vpcRegionLabel"
-          },
-          "type":"string",
-          "validator":{
-             "v-type":"vsi-region",
-             "params":[
-                "api-key"
-             ]
-          }
-       },
        "loadbalancer":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -173,7 +161,7 @@
           "validator":{
              "v-type":"vsi-instances",
              "params":[
-                "vsiRegion"
+                "vpcName"
              ]
           },
           "type":"string",
@@ -183,7 +171,6 @@
     "required":[
        "app-name",
        "api-key",
-       "vsiRegion",
        "virtual-server-instance"
     ],
     "form":[
@@ -218,15 +205,6 @@
           "items":[
              {
                 "type":"label",
-                "description":{
-                    "$ref":"#/messages/deploy.vpcRegionTitle"
-                 },
-                "title":{
-                   "$ref":"#/messages/deploy.vpcRegionTitle"
-                }
-             },
-             {
-                "type":"label",
                 "title":""
              },
              {
@@ -237,16 +215,6 @@
                 "title":{
                    "$ref": "#/messages/deploy.bastion"
                 }
-             },
-             {
-                "type":"select",
-                "title":{
-                   "$ref":"#/messages/deploy.vpcRegionTitle"
-                },
-                "placeholder":{
-                   "$ref":"#/messages/deploy.regionPlaceHolder"
-                },
-                "key":"vsiRegion"
              },
              {
                 "type":"label",
