@@ -55,6 +55,11 @@ spec:
       default: ""
     - name: insights
       description: The variable storing DevOps Insight integration with the toolchain
+    - name: deployment-strategy
+    - name: blue-pool
+    - name: green-pool
+    - name: loadbalancer
+    - name: bastion-host  
   workspaces:
     - name: pipeline-ws
   tasks:
@@ -182,6 +187,10 @@ spec:
     - name: check-if-roll-back-required
       taskRef:
         name: roll-back-deployment-task
+      when:
+        - input: "$(params.deployment-strategy)"
+          operator: in
+          values: [ "interrupt"]         
       params:
         - name: appname
           value: $(params.app-name)
